@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'accounts/sign_up_profile/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="min_height">
+    <div class="container">
+        <div class="login_wrap">
+            <div class="login_logo">
+                <img src="{% static '/images/sign_up_lv2.svg' %}" style="width:332px;">
+            </div>
+            <div class="input_wrap">
+                <div class="text">
+                    내 주요 동네(필수)
+                    {% if error %}
+                    <div class="alert">
+                        {{ error }}
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <form method="POST" action="{% url 'accounts:sign_up_profile' %}">
+                {% csrf_token %}
+                <div class="input_box">
+                    <input type="text" id="main_viliage" name="main_viliage" placeholder="동명(읍, 면)으로 검색 (ex.연희동)">
+                        <div class="text">
+                            내 동네(선택)
+                        </div>
+                    <input type="text" id="second_viliage" name="second_viliage" placeholder="동명(읍, 면)으로 검색 (ex.연희동)">
+                        <div class="text">
+                            내 동네(선택)
+                        </div>
+                    <input type="text" id="third_viliage" name="third_viliage" placeholder="동명(읍, 면)으로 검색 (ex.연희동)">
+                </div>
+                <div class="button">
+                    <div class="login_submit">
+                        <button type ="submit">다음</button>
+                    </div>
+                    <p>이전으로</p>                       
+                </div>
+                </form>                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

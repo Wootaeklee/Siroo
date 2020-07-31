@@ -58,11 +58,11 @@ class User_profile(models.Model):
     follow = models.ManyToManyField("accounts.User", related_name='follower', blank=True)
     introduce = models.CharField(max_length=300, null=True)
     main_viliage = models.CharField(max_length=10, null=True)
-    second_viliage = models.CharField(max_length=10, null=True)
-    third_viliage = models.CharField(max_length=10, null=True)
-    interrest_tag1 = models.CharField(max_length=15, null=True)
-    interrest_tag2 = models.CharField(max_length=15, null=True)
-    interrest_tag3 = models.CharField(max_length=15, null=True)
+    second_viliage = models.CharField(max_length=10, blank=True)
+    third_viliage = models.CharField(max_length=10, blank=True)
+    interrest_tag1 = models.CharField(max_length=15, blank=True)
+    interrest_tag2 = models.CharField(max_length=15, blank=True)
+    interrest_tag3 = models.CharField(max_length=15, blank=True)
 
 
     def __str__(self):

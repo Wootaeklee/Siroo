@@ -145,6 +145,8 @@
 }
 
 .input_textbox textarea{
+    padding-left: 7px;
+    padding-right: 5px;
     width: 625px;
     height: 260px;
     resize: none;

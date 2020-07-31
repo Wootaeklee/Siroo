@@ -77,8 +77,16 @@
                     </a>  
                 </div> 
                 <div class="feed_card_liked">
-                    댓글 : {{ post.comment_set.all.count }}
-                    좋아요 : {{ post.liked_users.count }}
+                    <div class="comment_count">
+                    <img src="{% static '/images/comment_count.svg'%}" style: width="16px"; height="16px";>{{ post.comment_set.all.count }}
+                    </div>
+                    <div class="liked_users_count">
+                        {% if post.liked_users.count == 0 %}
+                        <a href="{% url 'posts:like_button' post.id %}"><img src="{% static '/images/empty_like.svg'%}" style: width="14px"; height="13px";></a>{{ post.liked_users.count }}
+                        {% else %}
+                        <img src="{% static '/images/filled_like.svg'%}" style: width="14px"; height="13px";>{{ post.liked_users.count }}
+                        {% endif %}                       
+                    </div>                   
                 </div>
             </div>
         </div>         

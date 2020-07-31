@@ -28,6 +28,18 @@ def index(request):
     }
     
     return render(request, 'posts/index.html', context)
+
+#jquery를 쓸 수 있어야 예쁘게 동작할 수 있음.    
+def like_button(request, post_id):
+
+    post = Post.objects.get(id=post_id)
+
+    if request.user in post.liked_users.all():
+        post.liked_users.remove(request.user)
+    else:
+        post.liked_users.add(request.user)
+
+    return render(request, 'posts/index.html')
     
 @login_required
 def detail(request, post_id):
@@ -48,7 +60,7 @@ def detail(request, post_id):
     #댓글 뷰 기능
     comments = post.comment_set.all().order_by('-id')
 
-    #좋아요 기능
+    #좋아요 뷰 기능
     likedusers = list(post.liked_users.all())
     likedusers_nicks = [*map(lambda user:user.nickname, list(post.liked_users.all()))]
 
@@ -85,8 +97,10 @@ def create(request):
     context = {} 
 
     user = request.user
+    tag = request.POST['tag']
     body = request.POST['body']
-    post = Post(user= user, body = body)
+    body_tag = body + ' ' + tag
+    post = Post(user= user, body = body_tag)
     if len(body) < 1 :
         context['error'] = '한 글자 이상은 작성해주세요'
     else:
@@ -188,7 +202,6 @@ def update(request, post_id):
             context['error'] = '태그(#)가 5개를 초과할 수 없습니다'
             body = post.body
             context['body'] = body
-            print(1)           
 
     #바로 detail페이지로 가지 않고, tag저장 후 가기 위해서 tagforpost로 이동
     return render(request, 'posts:edit.html', context)    
@@ -376,13 +389,26 @@ def filter_page(request, tag_id):
 
 def profile_page(request, user_id):
 
+
+
     profile_user = user_id     
     my_posts = list(Post.objects.filter(user = profile_user))
     user = User.objects.get(id=profile_user)
 
+    try:
+        user_profile = User_profile.objects.get(user=user)
+    except User_profile.DoesNotExist:
+        user_profile = User_profile(user=user)
+        user_profile.save()
+
+    if user_profile.introduce is None:
+        user_introduce = "아직 자기소개가 없습니다."
+    else:
+        user_introduce = user_profile.introduce
+
     #팔로우, 팔로우가 없을 경우 에러 방지
     try:
-        User_profile.objects.get(user = profile_user)
+        User_profile.objects.filter(user = profile_user)
         profile = User_profile.objects.get(user = profile_user)
     except User_profile.DoesNotExist:
         profile = None
@@ -405,11 +431,16 @@ def profile_page(request, user_id):
         except User_profile.DoesNotExist:
             count_follow = 0
     #-----------------------------------
+    #정보수정버튼 노출 관련
+    user_id = request.user.id
         
     context = {
             'my_posts' : my_posts,
             'count_follow' : count_follow,
             'count_follower' : count_follower,
+            'user_id' : user_id,
+            'profile_user' : profile_user,
+            'user_introduce' : user_introduce
         }
 
     return render(request, 'accounts/my_page.html', context)

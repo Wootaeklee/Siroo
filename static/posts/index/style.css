@@ -226,28 +226,54 @@
     margin : 0 11px 0 11px;   
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
 .feed_card_author {
     box-sizing: border-box;
-    padding: 10px 0;
+    padding: 10px 10px;
     height: 39px;
     font-family: 'Noto Sans KR', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
     align-self: center;
+    width: 120px;
 }
 
 .feed_card_liked {
+    width: 80px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
     box-sizing: border-box;
-    padding: 10px 0;
+    padding: 10px 5px;
     height: 39px;
     font-family: 'DM Sans', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
     align-self: center;
+    align-items: center;
+}
+
+.comment_count {
+    display: flex;
+    flex-direction: row;
+    margin-right: 5px;
+}
+
+.liked_users_count {
+    display: flex;
+    flex-direction: row;
+    margin-right: 5px;
+}
+
+.liked_users_count img {
+    margin-top: 1px;
+}
+
+.feed_card_liked img{
+    margin-right: 5px;
 }

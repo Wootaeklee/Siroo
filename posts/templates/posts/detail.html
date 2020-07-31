@@ -115,7 +115,7 @@
     </div>                        
 </div>
 
-{% comment %} 댓글박스 {% endcomment %}
+<!-- 댓글박스 -->
 <div class="container">
     <form action="{% url 'posts:comment_create' post.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
