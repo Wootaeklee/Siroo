@@ -66,7 +66,7 @@
                         <div><img src="{% static 'images/comment_count.svg'%}" style="width: 16px; height: 14.86px;"></div>
                         <div>{{ post.liked_users.count }}</div>
 
-                        {% comment %} 좋아요버튼 {% endcomment %}
+                        좋아요버튼
                         {% if user.is_authenticated %}
                             {% if user in post.liked_users.all %}
                                 <form action="{% url 'posts:like' post.id %}" method="POST">
@@ -115,7 +115,7 @@
     </div>                        
 </div>
 
-{% comment %} 댓글박스 {% endcomment %}
+<!-- 댓글박스 -->
 <div class="container">
     <form action="{% url 'posts:comment_create' post.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}

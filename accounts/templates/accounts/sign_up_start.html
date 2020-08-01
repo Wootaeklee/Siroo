@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'accounts/sign_up_start/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="min_height">
+    <div class="container">
+        <div class="login_wrap">
+            <div class="login_logo">
+                <img src="{% static '/images/login_logo.svg' %}" style="width:332px;">
+            </div>
+            <ul>
+                <li class="email"><a href="{% url 'accounts:sign_up' %}">이메일 계정으로 가입하기</a></li>
+                <li><a href=""></a>카카오 계정으로 가입하기</li>
+                <li><a href=""></a>구글 계정으로 가입하기</li>
+            </ul>
+            <div class="text">이미 회원이신가요? <a href="{% url 'accounts:login' %}">로그인</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

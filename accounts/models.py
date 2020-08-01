@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    nickname = models.CharField(max_length=20, null=True)
+    nickname = models.CharField(max_length=20, unique=True ,null=True)
     gender = models.CharField(max_length=10, choices=CHOICE_GENDER)
     
 
@@ -58,13 +58,13 @@ class User_profile(models.Model):
     follow = models.ManyToManyField("accounts.User", related_name='follower', blank=True)
     introduce = models.CharField(max_length=300, null=True)
     main_viliage = models.CharField(max_length=10, null=True)
-    second_viliage = models.CharField(max_length=10, null=True)
-    third_viliage = models.CharField(max_length=10, null=True)
-    interrest_tag1 = models.CharField(max_length=15, null=True)
-    interrest_tag2 = models.CharField(max_length=15, null=True)
-    interrest_tag3 = models.CharField(max_length=15, null=True)
+    second_viliage = models.CharField(max_length=10, blank=True)
+    third_viliage = models.CharField(max_length=10, blank=True)
+    interrest_tag1 = models.CharField(max_length=15, blank=True)
+    interrest_tag2 = models.CharField(max_length=15, blank=True)
+    interrest_tag3 = models.CharField(max_length=15, blank=True)
 
 
     def __str__(self):
         
-        return f'user : {self.user.nickname} 주 동네: {self.main_viliage}' 
+        return f' 주 동네: {self.main_viliage}' 

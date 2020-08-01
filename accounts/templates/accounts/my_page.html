@@ -2,9 +2,18 @@
 
 {% load static %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'posts/detail/style.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/my_page/style.css' %}">
 {% endblock %}
 {% block content %}
+
+{% if user_id == profile_user %}
+<a href="{% url 'accounts:new_profile' user.id %}">정보수정</a>
+{% else %}
+{% endif %}
+<div class="followers">
+    자기소개 : {{ user_introduce }}
+</div>
+
     <div class="followers">
         팔로워 : {{ count_follower }} 명
     </div>

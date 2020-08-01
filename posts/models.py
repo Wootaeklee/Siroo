@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.utils import timezone
 from datetime import datetime
@@ -17,6 +18,7 @@ class Post(models.Model):
     #ManytoManyField로 태그 저장.
     taginpost = models.ManyToManyField("Tag", related_name='taged_post', blank=True)
     liked_users = models.ManyToManyField("accounts.User", related_name='liked_posts', blank=True)
+    
 
     #property를 이용하면, 클래스 안의 변수의 값 불러와서 커스텀한 뒤 내보낼 수 있음.
       
@@ -115,5 +117,9 @@ class Tag(models.Model):
         return f'{self.tag}'
 
 
-
-
+class Report(models.Model):
+    
+    body = models.TextField()
+    user = models.ForeignKey("accounts.User", on_delete=models.CASCADE)
+    post = models.ForeignKey("Post", on_delete=models.CASCADE, null=True)
+    comment = models.ForeignKey("Comment", on_delete=models.CASCADE, null=True)

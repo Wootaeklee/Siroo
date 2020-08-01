@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'accounts/update_profile/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="min_height">
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    <div class="container">
+        <div class="login_wrap">
+            <div class="login_logo">
+                <img src="{% static '/images/login_logo.svg' %}" style="width:332px;">
+            </div>
+            <div class="input_wrap">
+                <div class="text">
+                    정보수정
+                </div>
+                <form method="POST" action="{% url 'accounts:update_profile' user.id %}">
+                {% csrf_token %}
+                <div class="input_box">
+                    동네 주민들에게 자신을 소개해보아요.
+                    <label for="introduce">해쉬태그를 이용해보세요.
+                    <input type="text" id="introduce" name="introduce" value="{{ profiles.introduce }}"></label>
+                    
+                    살고 있는 동네는 어디인가요?
+                    <label for="main_viliage">우리 동네 주민들을 만날 수 있답니다.
+                    <input type="text" id="main_viliage" name="main_viliage" value="{{ profiles.main_viliage }}">
+                    </label>
+                    (선택사항)직장이나 학교를 다니는 동네는 어디인가요?
+                    <label for="second_viliage">직장이나 학교 등 내가 자주가는 동네 정보도 만날 수 있어요
+                    <input type="text" id="second_viliage" name="second_viliage" value="{{ profiles.second_viliage }}">
+                    </label>
+                    (선택사항)관심있는 동네는 어디인가요?
+                    
+                    <input type="text" id="third_viliage" name="third_viliage" value="{{ profiles.third_viliage }}">
+                    <label for="second_viliage">이사를 가고 싶거나, 친한 친구들이 주로 사는 지역 등을 골라볼 수 있습니다</label>
+                </div>
+                <div class="button">
+                    <div class="login_submit">
+                        <button type ="submit">다음으로 넘어가기</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
