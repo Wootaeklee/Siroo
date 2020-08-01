@@ -117,7 +117,7 @@ def update_profile(request, user_id):
     user = request.user
     profiles = User_profile.objects.get(user_id=user.id)
   
-
+    
     #POST Method
     if request.method == 'POST':
         if (request.POST['introduce'] and
