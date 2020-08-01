@@ -58,7 +58,7 @@
                     {% if post.taginpost.all %}                            
                         {% for tag in post.taginpost.all %}
                             <div class="tag">   
-                                #{{ tag }} 
+                                <a href="{% url 'posts:tag_filter' tag.id %}">#{{ tag }} 
                             </div>
                         {% endfor %}                            
                         {% endif %}
@@ -82,7 +82,7 @@
                     </div>
                     <div class="liked_users_count">
                         {% if post.liked_users.count == 0 %}
-                        <a href="{% url 'posts:like_button' post.id %}"><img src="{% static '/images/empty_like.svg'%}" style: width="14px"; height="13px";></a>{{ post.liked_users.count }}
+                        <img src="{% static '/images/empty_like.svg'%}" style: width="14px"; height="13px";>{{ post.liked_users.count }}
                         {% else %}
                         <img src="{% static '/images/filled_like.svg'%}" style: width="14px"; height="13px";>{{ post.liked_users.count }}
                         {% endif %}                       

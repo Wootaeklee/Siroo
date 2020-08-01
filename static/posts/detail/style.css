@@ -87,7 +87,7 @@
 }
 
 .vil {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -99,7 +99,7 @@
 
 .daycount {
     align-self: flex-end;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -134,7 +134,7 @@
 
 .nickname {
     height: 16px;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -145,7 +145,7 @@
 
 .uservil {
     height: 16px;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -155,7 +155,7 @@
     
 .post_body {
     min-height: 200px;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -173,7 +173,7 @@
     width : 100px;
     display: flex;
     justify-content: space-around;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -187,7 +187,7 @@
     align-content: center;
     align-items: center;
     box-sizing: border-box;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -209,5 +209,10 @@
 
 
 .comments_view {
-    
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    margin-bottom: 43px;
 }

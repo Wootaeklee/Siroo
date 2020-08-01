@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    nickname = models.CharField(max_length=20, null=True)
+    nickname = models.CharField(max_length=20, unique=True ,null=True)
     gender = models.CharField(max_length=10, choices=CHOICE_GENDER)
     
 
@@ -67,4 +67,4 @@ class User_profile(models.Model):
 
     def __str__(self):
         
-        return f'user : {self.user.nickname} 주 동네: {self.main_viliage}' 
+        return f' 주 동네: {self.main_viliage}' 

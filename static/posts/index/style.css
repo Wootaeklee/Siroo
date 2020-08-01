@@ -179,7 +179,7 @@
     text-overflow: ellipsis;    
 }
 
-.tag {    
+.tag a{    
     font-family: 'DM Sans', sans-serif;
     font-style: normal;
     font-weight: normal;

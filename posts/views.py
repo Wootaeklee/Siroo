@@ -29,18 +29,6 @@ def index(request):
     
     return render(request, 'posts/index.html', context)
 
-#jquery를 쓸 수 있어야 예쁘게 동작할 수 있음.    
-def like_button(request, post_id):
-
-    post = Post.objects.get(id=post_id)
-
-    if request.user in post.liked_users.all():
-        post.liked_users.remove(request.user)
-    else:
-        post.liked_users.add(request.user)
-
-    return render(request, 'posts/index.html')
-    
 @login_required
 def detail(request, post_id):
 
@@ -368,8 +356,9 @@ def like(request, post_id):
 
 @login_required
 def filter_page(request, tag_id):
-
-    posts = Post.objects.all().order_by('-created_at')
+    
+    tag = Tag.objects.get(id=tag_id)
+    posts = tag.taged_post.all().order_by('-created_at')
     
     #전체 태그에서 가장 많이 쓰인 태그 불러오기    
     # taged_post가 없는 경우 태그 목록에 노출 되지 않도록.

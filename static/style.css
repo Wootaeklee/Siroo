@@ -20,7 +20,7 @@ footer {
 
 .header {   
     text-align: center;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -83,7 +83,7 @@ footer {
     height: 29px;
     box-sizing: border-box;
     border-radius: 5px;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -91,7 +91,7 @@ footer {
 /* 푸터 */
 
 .footer {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: bold;
     font-size: 12px;
