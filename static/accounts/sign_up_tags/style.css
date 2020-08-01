@@ -1,0 +1,146 @@
+.min_height {
+    min-height: 790px;
+    padding-top: 11px;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+}
+
+.login_wrap {
+    margin: 0 auto;
+    width: 332px;
+    margin-top: 17px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}    
+
+.login_logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 34px;
+}
+
+.input_wrap {
+    margin: 0 auto;
+    margin-top: 75px;
+    display: flex;
+    flex-direction:column;
+    justify-content: flex-start;
+}
+
+.input_wrap .text {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* The alert message box */
+.alert {
+    padding: 1px 1px;
+    background-color: black;
+    color: white;
+    width:53%;
+    height: 100%;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    text-align: right;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  /* The close button */
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  /* When moving the mouse over the close button */
+  .closebtn:hover {
+    color: black;
+  }
+
+.input_box {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+    
+}
+
+.topics_tags {
+    margin-top: 15px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0 11px 0 11px;
+    flex-wrap: wrap;
+}
+
+.topics_tag {
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: #fff;
+    padding: 6px 8px 6px 8px;
+    height: 30px;
+    background: #50BB1D;
+    border-radius: 15px;
+    box-sizing: border-box;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.button {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login_submit {
+    display: flex;
+    justify-items: center;
+    margin-bottom: 10px;
+}
+
+.button .login_submit button {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    width: 300px;
+    height: 48px;
+    border-radius: 33px;
+    background-color: #F2F2F2;
+}
+.button .login_submit button:hover {
+    color: #6F4C3D;
+}
+
+.button p {
+    text-align: center;
+    width: 100%;
+    margin:0 auto;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    color: #B3B3B3;
+}

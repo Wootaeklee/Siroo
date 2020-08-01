@@ -69,6 +69,30 @@ def sign_up_profile(request):
     return render(request, 'accounts/sign_up_profile.html', context)
 
 
+def sign_up_tags(request):
+
+    context = {}
+
+    user = request.user  
+
+    #POST Method
+    if request.method == 'POST':
+        if (request.POST['main_viliage'] ):
+
+            interest_tag1 = request.POST['main_viliage']
+            interest_tag2 = request.POST['second_viliage']
+            interest_tag3 = request.POST['third_viliage']
+            profile = User_profile(user=user, introduce = '', main_viliage=main_viliage, second_viliage=second_viliage, third_viliage=third_viliage)
+            profile.save()
+            # profiles = User_profile(main_viliage=main_viliage)
+            
+            return redirect('posts:profile_page', user_id=user.id)
+    
+        else:
+            context['error'] = '우리 동네는 꼭 입력해주세요.'
+            
+    #GET Method    
+    return render(request, 'accounts/sign_up_profile.html', context)
 
 
 def login(request):
