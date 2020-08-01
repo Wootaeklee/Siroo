@@ -422,15 +422,49 @@ def profile_page(request, user_id):
     #-----------------------------------
     #정보수정버튼 노출 관련
     user_id = request.user.id
-        
+
+    #-----------------------------------
+    #follow button 관련
+    request_id = request.user.id
+    request_user = User.objects.get(id=request_id)  
+    followers_list = list(profile.follow.all())
+    #user = User.objects.get(id=profile_user) 
+  
+    print(f"request_user.email = {request_user.email}")
+    print(f"post_user.email = {user.email}")
+    print(f"followers_list = {followers_list}")
+    request_user_email = str(request_user.email)
+    post_user_email = str(user.email)
+    trigger = 0
+    if  request_user_email == post_user_email:
+        trigger = 2
+        print(trigger)
+    else:
+        for follower in followers_list:
+            if request_user_email == str(follower):
+                trigger = trigger + 1
+           
+            else: 
+                pass 
+    print(trigger)
+    # trigger = 2 해당 프로필은 제 자신꺼
+    # trigger = 1 해당 프로필 유저를 제가 이미 팔로우중 
+    # trigger = 0 해당 프로필 유저를 제가 팔로우 하지 않음 
+    # views에 follower button 기능 추가 
+
+ 
+
     context = {
             'my_posts' : my_posts,
             'count_follow' : count_follow,
             'count_follower' : count_follower,
             'user_id' : user_id,
             'profile_user' : profile_user,
-            'user_introduce' : user_introduce
+            'user_introduce' : user_introduce,
+            'trigger' : trigger,
+  
         }
+
 
     return render(request, 'accounts/my_page.html', context)
 

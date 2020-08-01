@@ -67,4 +67,4 @@ class User_profile(models.Model):
 
     def __str__(self):
         
-        return f' 주 동네: {self.main_viliage}' 
+        return f' 주 동네: {self.main_viliage} {self.follow.all()}' 
