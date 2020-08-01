@@ -79,9 +79,9 @@ def sign_up_tags(request):
     if request.method == 'POST':
         if (request.POST['main_viliage'] ):
 
-            interest_tag1 = request.POST['main_viliage']
-            interest_tag2 = request.POST['second_viliage']
-            interest_tag3 = request.POST['third_viliage']
+            interrest_tag1 = request.POST['interrest_tag1']
+            interrest_tag2 = request.POST['interrest_tag2']
+            interrest_tag3 = request.POST['interrest_tag3']
             profile = User_profile(user=user, introduce = '', main_viliage=main_viliage, second_viliage=second_viliage, third_viliage=third_viliage)
             profile.save()
             # profiles = User_profile(main_viliage=main_viliage)

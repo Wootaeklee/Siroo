@@ -60,9 +60,9 @@ class User_profile(models.Model):
     main_viliage = models.CharField(max_length=10, null=True)
     second_viliage = models.CharField(max_length=10, blank=True)
     third_viliage = models.CharField(max_length=10, blank=True)
-    interest_tag1 = models.CharField(max_length=15, blank=True)
-    interest_tag2 = models.CharField(max_length=15, blank=True)
-    interest_tag3 = models.CharField(max_length=15, blank=True)
+    interrest_tag1 = models.CharField(max_length=15, blank=True)
+    interrest_tag2 = models.CharField(max_length=15, blank=True)
+    interrest_tag3 = models.CharField(max_length=15, blank=True)
 
 
     def __str__(self):
