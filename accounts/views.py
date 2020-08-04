@@ -15,30 +15,31 @@ def sign_up_start(request):
 
 def sign_up(request):
     context = {}
-    
+
     #POST Method
     if request.method == 'POST':
         if (request.POST['email'] and
                 request.POST['password'] and
                 request.POST['password'] == request.POST['password_check']):
 
-            new_user = User.objects.create_user(
+            if User.objects.filter(nickname=request.POST['nickname']):
+                context['error'] = '닉네임을 사용할 수 없습니다'
+                
+            else:                
+                new_user = User.objects.create_user(
                 email=request.POST['email'],
                 name=request.POST['name'],
                 nickname=request.POST['nickname'],
                 gender=request.POST['gender'],
                 password=request.POST['password'],
-            )
+                )
+                auth.login(request, new_user)
 
-            auth.login(request, new_user)
-            # profile = User_profile(user=request.user)
-            # profile.save()
-            # user= new_user
-            # user_id=new_user.id
-            return redirect('accounts:sign_up_profile')
+                return redirect('accounts:sign_up_profile')
     
         else:
             context['error'] = 'Password를 확인해주세요'
+            
     #GET Method    
     return render(request, 'accounts/sign_up.html', context)
 
@@ -46,17 +47,18 @@ def sign_up_profile(request):
 
     context = {}
 
-    user = request.user
+    user = request.user  
 
     #POST Method
     if request.method == 'POST':
-        if (request.POST['main_village'] ):
+        if (request.POST['main_viliage'] ):
 
-            main_village = request.POST['main_village']            
-            second_village = request.POST['second_village']
-            third_village = request.POST['third_village']
-            profile = User_profile(user=user, main_village=main_village, second_village=second_village, third_village=third_village)
+            main_viliage = request.POST['main_viliage']
+            second_viliage = request.POST['second_viliage']
+            third_viliage = request.POST['third_viliage']
+            profile = User_profile(user=user, introduce = '', main_viliage=main_viliage, second_viliage=second_viliage, third_viliage=third_viliage)
             profile.save()
+            # profiles = User_profile(main_viliage=main_viliage)
             
             return redirect('posts:profile_page', user_id=user.id)
     
@@ -65,6 +67,33 @@ def sign_up_profile(request):
             
     #GET Method    
     return render(request, 'accounts/sign_up_profile.html', context)
+
+
+def sign_up_tags(request):
+
+    context = {}
+
+    user = request.user  
+
+    #POST Method
+    if request.method == 'POST':
+        if (request.POST['main_viliage'] ):
+
+            interrest_tag1 = request.POST['interrest_tag1']
+            interrest_tag2 = request.POST['interrest_tag2']
+            interrest_tag3 = request.POST['interrest_tag3']
+            profile = User_profile(user=user, introduce = '', main_viliage=main_viliage, second_viliage=second_viliage, third_viliage=third_viliage)
+            profile.save()
+            # profiles = User_profile(main_viliage=main_viliage)
+            
+            return redirect('posts:profile_page', user_id=user.id)
+    
+        else:
+            context['error'] = '우리 동네는 꼭 입력해주세요.'
+            
+    #GET Method    
+    return render(request, 'accounts/sign_up_profile.html', context)
+
 
 def login(request):
     context ={}
@@ -116,13 +145,21 @@ def update_profile(request, user_id):
     #POST Method
     if request.method == 'POST':
         if (request.POST['introduce'] and
-                request.POST['main_village'] ):
+                request.POST['main_viliage'] ):
 
             profiles.introduce = request.POST['introduce']
-            profiles.main_village = request.POST['main_village']
-            profiles.second_village = request.POST['second_village']                
-            profiles.third_village = request.POST['third_village']
+            profiles.main_viliage = request.POST['main_viliage']
+            # profile = User_profile(user=user, introduce=introduce, main_viliage=main_viliage)
             profiles.save()
+
+            if (request.POST['second_viliage'] and
+                    request.POST['third_viliage'] ):
+                    
+                user = request.user
+                profiles.second_viliage = request.POST['second_viliage']
+                profiles.third_viliage = request.POST['third_viliage']
+                # profile = User_profile(user=user, second_viliage=second_viliage, third_viliage=third_viliage)
+                profiles.save()
             
             return redirect('posts:profile_page', user_id=user.id)
     

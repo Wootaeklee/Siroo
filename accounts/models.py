@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    nickname = models.CharField(max_length=20, null=True)
+    nickname = models.CharField(max_length=20, unique=True ,null=True)
     gender = models.CharField(max_length=10, choices=CHOICE_GENDER)
     
 
@@ -57,14 +57,16 @@ class User_profile(models.Model):
     user = AutoOneToOneField("accounts.User", on_delete=models.CASCADE, null=True)
     follow = models.ManyToManyField("accounts.User", related_name='follower', blank=True)
     introduce = models.CharField(max_length=300, null=True)
-    main_village = models.CharField(max_length=10, null=True)
-    second_village = models.CharField(max_length=10, blank=True)
-    third_village = models.CharField(max_length=10, blank=True)
-    interest_tag1 = models.CharField(max_length=15, blank=True)
-    interest_tag2 = models.CharField(max_length=15, blank=True)
-    interest_tag3 = models.CharField(max_length=15, blank=True)
-    interest_tags = models.ManyToManyField("posts.Tag", related_name='tags_in_userprofile', blank=True)
+    main_viliage = models.CharField(max_length=10, null=True)
+    second_viliage = models.CharField(max_length=10, blank=True)
+    third_viliage = models.CharField(max_length=10, blank=True)
+    interrest_tag1 = models.CharField(max_length=15, blank=True)
+    interrest_tag2 = models.CharField(max_length=15, blank=True)
+    interrest_tag3 = models.CharField(max_length=15, blank=True)
+
 
     def __str__(self):
         
-        return f'user : {self.user} 주 동네: {self.main_village}' 
+        return f' 주 동네: {self.main_viliage}' 
+
+

@@ -59,7 +59,7 @@
                     {% if post.taginpost.all %}                            
                         {% for tag in post.taginpost.all %}
                             <div class="tag">   
-                                #{{ tag }} 
+                                <a href="{% url 'posts:tag_filter' tag.id %}">#{{ tag }} 
                             </div>
                         {% endfor %}                            
                         {% endif %}

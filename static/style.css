@@ -25,7 +25,7 @@ footer {
 
 .header {   
     text-align: center;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -85,7 +85,7 @@ footer {
     box-sizing: border-box;
     padding:3px;
     border-radius: 5px;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
