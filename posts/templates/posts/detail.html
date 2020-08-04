@@ -12,22 +12,33 @@
                 <div class="text">
                     토픽
                 </div>
-                <div class="topic_tags">
                 {% if tags %}
+                <div class="topic_tags">                
                 {% for tag in tags %}
                 <div class="topic_tag">
                     {{ tag }} 
+                    <a href="{% url 'posts:interest_tags' tag.id %}?next={{request.path}}">
+                        {% if tag in my_tags %}
+                        -
+                        {% else %}
+                        +
+                        {% endif %}
+                    </a>
                 </div>
-                {% endfor %}
+                {% endfor %}                
+
+                </div>
                 {% endif %}
-                </div>
                 <div class="text">
                     장소
                 </div>
                 <div class="vils_daycount">
                     <div class="vils">
-                        <img src="{% static 'images/map_pin.svg'%}" style="width: 22px; height: 22px;"><div class="vil">청라1동</div>
-                        <img src="{% static 'images/map_pin.svg'%}" style="width: 22px; height: 22px;"><div class="vil">검암동</div>
+                        {% if post.post_vil.all %}
+                        {% for vil in post.post_vil.all %}
+                        <img src="{% static 'images/map_pin.svg'%}" style="width: 22px; height: 22px;"><div class="vil">{{ vil }}</div>
+                        {% endfor %}
+                        {% endif %}
                     </div>
                     <div class="daycount">
                         {{ post.daycount }}
@@ -41,7 +52,9 @@
                             {{ post.user.nickname }}
                         </div>
                         <div class="uservil">
-                            청라1동
+                            <div>{{ user_profile.main_village }}</div>
+                            {% if user_profile.second_village %}<div>{{ user_profile.second_village }}</div>{% endif %}
+                            {% if user_profile.third_village %}<div>{{ user_profile.third_village }}</div>{% endif %}
                         </div>                      
                     </div>
                 </div>
@@ -61,62 +74,77 @@
                         {% endif %}
                     </div>
                     <div class="like_comment">
-                        <div><img src="{% static 'images/empty_like.svg'%}" style="width: 16px; height: 14.86px;"></div>
-                        <div>좋아요 숫자</div>
-                        <div><img src="{% static 'images/comment_count.svg'%}" style="width: 16px; height: 14.86px;"></div>
-                        <div>{{ post.liked_users.count }}</div>
+                        <div>
 
-                        좋아요버튼
                         {% if user.is_authenticated %}
-                            {% if user in post.liked_users.all %}
-                                <form action="{% url 'posts:like' post.id %}" method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-primary">LIKE</button>
-                                </form>
-                            {% else %}
-                                <form action="{% url 'posts:like' post.id %}" method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-secondary">LIKE</button>
-                                </form>
-                            {% endif %}
+                        <form action="{% url 'posts:like' post.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="image" src="{% static 'images/empty_like.svg'%}" style="width: 16px; height: 14.86px;">
+                        </form>
                         {% endif %}
-
+                        </div>
+                        <div>{{ post.liked_users.count }}</div>
+                        <div><img src="{% static 'images/comment_count.svg'%}" style="width: 16px; height: 16.51px; margin-top:3px;"></div>
+                        <div>{{ post.comment_set.all.count }}</div>
                     </div>
                 </div>
                 <div class="line">
                 </div>
+                <form action="{% url 'posts:comment_create' post.id %}" method="POST" enctype="multipart/form-data">
+                <div class="comment_write">
+                    <div class="profile_photo">
+                    </div>                 
+                {% csrf_token %}
+                <div>
+                    <textarea class="body" name="body" rows="4"></textarea>
+                </div>                
+                <div>
+                    <input type="submit" value="댓글달기">
+                </div>                  
+                </div>
+                </form>        
                 {% if comments %}
                 {% for comment in comments %}
                 <div class="comments_view">
-                    <div class="profile_photo">                        
-                    </div>
-                    <div class="comment_nickname_uservil">  
-                        <div class="nickname">
-                            {{ comment.user.nickname }}
+                    <div class="comment_contents">                        
+                        <div class="profile_photo">
+                        </div> 
+                        <div class="comment_info_body">                 
+                        <div class="comment_nickname_uservil">  
+                            <div class="nickname">
+                                {{ comment.user.nickname }}
+                            </div>
+                            <div class="uservil">
+                                청라 1동
+                            </div>
+                            {% if user.nickname == comment.user.nickname %}
+                            <a href="{% url 'posts:comment_edit' comment.id %}">Edit</a>
+                            <a href="{% url 'posts:comment_delete' comment.id %}">Delete</a>
+                            {% else %}
+                            {% endif %}
                         </div>
-                        <div class="uservil">
-                            청라 1동
-                        </div>
-                        <div class="uservil">
+                        <div class="comment_body">
                             {{ comment.body }}
                         </div>
-                        {{ comment.daycount }}
                     </div>
+                </div>
+                <div class="comment_menu">
+                {{ comment.daycount }}
                     {% if user.nickname == comment.user.nickname %}
-    <a href="{% url 'posts:comment_edit' comment.id %}">Edit</a>
-    <a href="{% url 'posts:comment_delete' comment.id %}">Delete</a>
-    {% else %}
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-                </div>                
+                    <a href="{% url 'posts:comment_edit' comment.id %}">좋아요</a>
+                    {% else %}
+                    {% endif %}
+                </div>
+        </div>
+                {% endfor %}
+                {% endif %}              
             </div>
         </div>
     </div>                        
 </div>
 
 <!-- 댓글박스 -->
-<div class="container">
+<!-- <div class="container">
     <form action="{% url 'posts:comment_create' post.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset>      
@@ -125,7 +153,7 @@
             <br>
             <input type="submit" value="SUBMIT">                    
         </fieldset>
-    </form>     
+    </form>      -->
 
 <!--
     <h3>작성자 : {{ post.user.nickname }} </h3>

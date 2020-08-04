@@ -5,7 +5,6 @@
 {% block style %}
 <link rel="stylesheet" href="{% static 'accounts/update_profile/style.css' %}">
 {% endblock %}
-
 {% block content %}
 
 <div class="min_height">
@@ -29,17 +28,17 @@
                     <input type="text" id="introduce" name="introduce" value="{{ profiles.introduce }}"></label>
                     
                     살고 있는 동네는 어디인가요?
-                    <label for="main_viliage">우리 동네 주민들을 만날 수 있답니다.
-                    <input type="text" id="main_viliage" name="main_viliage" value="{{ profiles.main_viliage }}">
+                    <label for="main_village">우리 동네 주민들을 만날 수 있답니다.
+                    <input type="text" id="main_village" name="main_village" value="{{ profiles.main_village }}">
                     </label>
                     (선택사항)직장이나 학교를 다니는 동네는 어디인가요?
-                    <label for="second_viliage">직장이나 학교 등 내가 자주가는 동네 정보도 만날 수 있어요
-                    <input type="text" id="second_viliage" name="second_viliage" value="{{ profiles.second_viliage }}">
+                    <label for="second_village">직장이나 학교 등 내가 자주가는 동네 정보도 만날 수 있어요
+                    <input type="text" id="second_village" name="second_village" value="{{ profiles.second_village }}">
                     </label>
                     (선택사항)관심있는 동네는 어디인가요?
                     
-                    <input type="text" id="third_viliage" name="third_viliage" value="{{ profiles.third_viliage }}">
-                    <label for="second_viliage">이사를 가고 싶거나, 친한 친구들이 주로 사는 지역 등을 골라볼 수 있습니다</label>
+                    <input type="text" id="third_village" name="third_village" value="{{ profiles.third_village }}">
+                    <label for="second_village">이사를 가고 싶거나, 친한 친구들이 주로 사는 지역 등을 골라볼 수 있습니다</label>
                 </div>
                 <div class="button">
                     <div class="login_submit">

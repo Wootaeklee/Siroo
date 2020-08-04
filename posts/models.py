@@ -18,6 +18,8 @@ class Post(models.Model):
     #ManytoManyField로 태그 저장.
     taginpost = models.ManyToManyField("Tag", related_name='taged_post', blank=True)
     liked_users = models.ManyToManyField("accounts.User", related_name='liked_posts', blank=True)
+    post_vil = models.ManyToManyField("Vil", related_name='vil_post', blank=True)
+
     
 
     #property를 이용하면, 클래스 안의 변수의 값 불러와서 커스텀한 뒤 내보낼 수 있음.
@@ -57,7 +59,7 @@ class Post(models.Model):
     def __str__(self):  
 
         if self.user:
-            return f'user{self.user.nickname} : body{self.body} / tag {self.taginpost.all()} {self.daycount}'
+            return f'{self.user.nickname} : body{self.body} / tag {self.taginpost.all()} /vil {self.post_vil.all()} {self.daycount}'
         return f'body{self.body} / tag {self.taginpost.all()} {self.daycount}'
 
 class Comment(models.Model):
@@ -109,7 +111,7 @@ class Comment(models.Model):
         return f'body{self.body} {self.daycount}'
 
 class Tag(models.Model):
-
+    
     tag = models.CharField(max_length=15)
         
     def __str__(self):
@@ -117,9 +119,10 @@ class Tag(models.Model):
         return f'{self.tag}'
 
 
-class Report(models.Model):
-    
-    body = models.TextField()
-    user = models.ForeignKey("accounts.User", on_delete=models.CASCADE)
-    post = models.ForeignKey("Post", on_delete=models.CASCADE, null=True)
-    comment = models.ForeignKey("Comment", on_delete=models.CASCADE, null=True)
+class Vil(models.Model):
+
+    vil = models.CharField(max_length=15)
+
+    def __str__(self):
+
+        return f'{self.vil}'

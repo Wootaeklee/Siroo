@@ -47,18 +47,17 @@ def sign_up_profile(request):
 
     context = {}
 
-    user = request.user  
+    user = request.user
 
     #POST Method
     if request.method == 'POST':
-        if (request.POST['main_viliage'] ):
+        if (request.POST['main_village'] ):
 
-            main_viliage = request.POST['main_viliage']
-            second_viliage = request.POST['second_viliage']
-            third_viliage = request.POST['third_viliage']
-            profile = User_profile(user=user, introduce = '', main_viliage=main_viliage, second_viliage=second_viliage, third_viliage=third_viliage)
+            main_village = request.POST['main_village']            
+            second_village = request.POST['second_village']
+            third_village = request.POST['third_village']
+            profile = User_profile(user=user, main_village=main_village, second_village=second_village, third_village=third_village)
             profile.save()
-            # profiles = User_profile(main_viliage=main_viliage)
             
             return redirect('posts:profile_page', user_id=user.id)
     
@@ -67,9 +66,6 @@ def sign_up_profile(request):
             
     #GET Method    
     return render(request, 'accounts/sign_up_profile.html', context)
-
-
-
 
 def login(request):
     context ={}
@@ -121,21 +117,13 @@ def update_profile(request, user_id):
     #POST Method
     if request.method == 'POST':
         if (request.POST['introduce'] and
-                request.POST['main_viliage'] ):
+                request.POST['main_village'] ):
 
             profiles.introduce = request.POST['introduce']
-            profiles.main_viliage = request.POST['main_viliage']
-            # profile = User_profile(user=user, introduce=introduce, main_viliage=main_viliage)
+            profiles.main_village = request.POST['main_village']
+            profiles.second_village = request.POST['second_village']                
+            profiles.third_village = request.POST['third_village']
             profiles.save()
-
-            if (request.POST['second_viliage'] and
-                    request.POST['third_viliage'] ):
-                    
-                user = request.user
-                profiles.second_viliage = request.POST['second_viliage']
-                profiles.third_viliage = request.POST['third_viliage']
-                # profile = User_profile(user=user, second_viliage=second_viliage, third_viliage=third_viliage)
-                profiles.save()
             
             return redirect('posts:profile_page', user_id=user.id)
     

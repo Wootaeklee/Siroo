@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'accounts/sign_up_profile/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="min_height">
+    <div class="container">
+        <div class="login_wrap">
+            <div class="login_logo">
+                <img src="{% static '/images/sign_up_lv2.svg' %}" style="width:332px;">
+            </div>
+            <div class="input_wrap">
+                <div class="text">
+                    내 관심사를 3개 이상 선택해주세요
+                    {% if error %}
+                    <div class="alert">
+                        {{ error }}
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    </div>
+                    {% endif %}
+                </div>
+                <form method="POST" action="{% url 'accounts:sign_up_profile' %}">
+                {% csrf_token %}
+                <div class="input_box">
+                    <select class="profile_tags">
+                        {% if hot_tags %}
+                            {% for hot_tag in hot_tags%}
+                                <option class="profile_tag">                    
+                                    #{{ hot_tag }}</span>
+                                </div>
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                <div class="button">
+                    <div class="login_submit">
+                        <button type ="submit">다음</button>
+                    </div>
+                    <p>이전으로</p>                       
+                </div>
+                </form>                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

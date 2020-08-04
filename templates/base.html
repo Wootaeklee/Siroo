@@ -34,14 +34,14 @@
                             <div class="navbutton">
                                 <form action="{% url 'accounts:logout' %}" method="POST">
                             {% csrf_token %}
-                                    <button type="submit" style="width: 61px; border: 1px solid #333333; background-color:white; color: #333333;">로그아웃</button>
+                             <button class="button1" type="submin">로그아웃</button>
                                 </form>
-                                    <button type="button" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;";><a href="{% url 'posts:profile_page'  user.id %}">마이페이지</a></button>
+                                <div class="button2"><a href="{% url 'posts:profile_page'  user.id %}">마이페이지</a></div>
                             </div> 
                             {% else %}                                        
                             <div class="navbutton">
-                                <button type="button" style="width: 61px; border: 1px solid #333333; background-color:white; color: #333333;"><a href="{% url 'accounts:login' %}">로그인</a></button>
-                                <button type="button" style="width: 74px; border: 1px solid #AE7D67; background-color:#AE7D67; color: #FFF;";><a href="{% url 'accounts:sign_up' %}">회원가입</a></button>
+                                <div class="button1"><a href="{% url 'accounts:login' %}">로그인</a></div>
+                                <div class="button2"><a href="{% url 'accounts:sign_up' %}">회원가입</a></div>
                             </div>
                             {% endif %}
                         </div>  

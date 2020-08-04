@@ -1,3 +1,8 @@
+a{
+    text-decoration: none;
+}
+
+
 /* 레이아웃 */
 
 footer {
@@ -49,10 +54,6 @@ footer {
     justify-self: space-between;
 }
 
-.header_logo .navbutton{
-    display: none;
-}
-
 .menu_wrap {
     display: inline-flex;
     flex-wrap: wrap;  
@@ -79,15 +80,44 @@ footer {
     flex-wrap: wrap;  
 }
 
-.navbutton button {
+.button1 {
     height: 29px;
     box-sizing: border-box;
+    padding:3px;
     border-radius: 5px;
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
+    width: 61px; 
+    border: 1px solid #333333; 
+    background-color:white; 
+    color: #333333;
 }
+
+.button1 a{
+    color: #333333;
+}
+
+.button2 {
+    height: 29px;
+    box-sizing: border-box;
+    padding:3px;
+    border-radius: 5px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    width: 74px; 
+    border: 1px solid #AE7D67; 
+    background-color:#AE7D67; 
+    color: #FFF;
+}
+
+.button2 a{
+    color: #FFF;
+}
+
 /* 푸터 */
 
 .footer {

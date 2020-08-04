@@ -17,7 +17,7 @@
             <div class="editor_text">
                 카테고리 태그(최대 5개)
             </div>
-        <form action="{% url 'posts:create' %}" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'posts:update' post.id %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="input_tag">
                 <input type="text" name="tag" value="본문에서도 #을 이용하여 태그를 입력할 수 있습니다:)">
@@ -28,14 +28,16 @@
             <div class="editor_text">
                 글 공유 지역 선택
             </div>
+            {% if user.is_authenticated %}
             <div class="select_vil">
-                <input type="checkbox" id="villiage1" name="villiage1" value="청라1동">
-                <label for="villiage1"> 청라1동 </label>
-                <input type="checkbox" id="villiage2" name="villiage2" value="청라1동">
-                <label for="villiage2"> 청라2동 </label>    
-                <input type="checkbox" id="villiage3" name="villiage3" value="청라1동">
-                <label for="villiage3"> 청라3동 </label>                    
+                <input type="checkbox" id="village1" name="village1" value="청라1동">
+                <label for="villiage1"> {{ user_profile.main_village }} </label>
+                <input type="checkbox" id="village2" name="village2" value="청라1동">
+                <label for="villiage2"> {{ user_profile.second_village }} </label>    
+                <input type="checkbox" id="village3" name="village2" value="청라1동">
+                <label for="villiage3"> {{ user_profile.third_village }} </label>                    
             </div>
+            {% endif %}
             <div class="upload_assets_alert">
                 <div class="upload_assets">
                 <div class="img1"><img src="{% static 'images/imageupload.svg'%}"></div>

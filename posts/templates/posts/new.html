@@ -28,14 +28,23 @@
                 <div class="editor_text">
                     글 공유 지역 선택
                 </div>
+                {% if user.is_authenticated %}
                 <div class="select_vil">
-                    <input type="checkbox" id="villiage1" name="villiage1" value="청라1동">
-                    <label for="villiage1"> 청라1동 </label>
-                    <input type="checkbox" id="villiage2" name="villiage2" value="청라1동">
-                    <label for="villiage2"> 청라2동 </label>    
-                    <input type="checkbox" id="villiage3" name="villiage3" value="청라1동">
-                    <label for="villiage3"> 청라3동 </label>                    
+                    <label for="villiage">
+                    <input type="checkbox" name="village" value="{{ user_profile.main_village }}" >
+                    {{ user_profile.main_village }} </label>
+                    {% if user_profile.second_village %}
+                    <label for="villiage"> 
+                    <input type="checkbox" name="village" value="{{ user_profile.second_village }}">
+                    {{ user_profile.second_village }} </label>
+                    {% endif %}
+                    {% if user_profile.third_village %}    
+                    <label for="villiage"> 
+                    <input type="checkbox" name="village" value="{{ user_profile.third_village }}">
+                    {{ user_profile.third_village }} </label>
+                    {% endif %}                    
                 </div>
+                {% endif %}
                 <div class="upload_assets_alert">
                     <div class="upload_assets">
                     <div class="img1"><img src="{% static 'images/imageupload.svg'%}"></div>
