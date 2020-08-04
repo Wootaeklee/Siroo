@@ -148,7 +148,7 @@ body {
     margin-bottom: 12px;
 }
 
-.profile_tags .tags {    
+.tags {    
     display: flex;
     align-self:flex-start;
     flex-direction: row;
@@ -221,7 +221,8 @@ body {
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
-    color: #333333;    
+    color: #333333;
+    margin-bottom: 19px;    
 }
 .posts_count1 {
     margin-right: 32px;
@@ -236,174 +237,63 @@ body {
 .posts_count2 a:hover {
     color: #333333;
 }
-
 .posts_comments_menu a {
     color: #B3B3B3;
 }
 
-.my_page_feed {
+.comments_feed {
     display: flex;
     justify-content: flex-start;
-    flex-wrap: wrap;
-    margin-left: 10px;
-    min-height: 540px;
+    flex-direction: column;
     width: 707px;
+    background: #FFFFFF;
+    min-height: 521px;
+    margin-left: 22px; 
 }
 .wrap_feed {
-
-}
-
-.feed_card {
-    width: 218px;
-    height: 161px;
-    background: #FFFFFF;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px; 
-    padding: 13px 17px 5px 17px;
-    margin : 17px 2px 0 10px;   
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.feed_card_body {
-    min-height: 68px;
-    margin-bottom: 16px;
-    font-family: 'DM Sans' ;
+    height: 40px;
+    border-bottom: 1px solid #C4C4C4;
+    font-family: 'Noto Sans KR' ;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
-    color: #000000;
-    white-space: wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
-
-.feed_card_tag {
-    height: 108px;
+    color: #333333;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    margin-left: 24px;
+    margin-right: 24px;
     justify-content: space-between;
 }
 
-.tags {    
+.daycount_post {
     display: flex;
-    align-self:flex-start;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    height: 53px;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;    
+    flex-direction: row;    
 }
 
-.tag {    
-    font-family: 'DM Sans';
+.daycount_post button {
+    margin-left: 19px;
+}
+.comment_daycount {
+    padding-top: 2px;
+    font-family: 'Noto Sans KR' ;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 500;
     font-size: 12px;
-    color: #AE7D67;
-    max-width: 130px;
-    height: 24px;
-    max-width: 120px;
-    padding: 2px 8px 4px 8px;
-    border: 1px solid #AE7D67;
-    border-radius: 15px;
-    box-sizing: border-box;
-    margin: 1px 1px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;    
+    color: #333333;
 }
 
-.feed_card_created_at {
-    width: 70px;
+.commented_post button {
+    width: 53px;
+    height: 22px;
+    border: 1px solid #333333;
     box-sizing: border-box;
-    height: 52px;
-    font-family: 'DM Sans', ;
+    border-radius: 5px;
+    font-family: 'Noto Sans KR' ;
     font-style: normal;
     font-weight: normal;
     font-size: 10px;
-    text-align: right;
-    color: #B3B3B3;
-    align-self:flex-end;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: flex-start;
+    color: #333333;
+    background-color: #fff;
 }
 
-.feed_card_info {
-    height: 39px;
-    width: 218px;
-    padding: 0;
-    background: #FFFFFF;
-    border-top: 1px solid #E0E0E0;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    margin : 0 2px 0 10px;   
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-.feed_card_avatar {
-    margin-left: 9px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #C4C4C4;;
-}
-.feed_card_author {
-    box-sizing: border-box;
-    padding: 10px 10px;
-    height: 39px;
-    font-family: 'Noto Sans KR';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    align-self: center;
-    width: 120px;
-}
-
-.feed_card_liked {
-    width: 80px;
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: row;
-    box-sizing: border-box;
-    padding: 10px 5px;
-    height: 39px;
-    font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    align-self: center;
-    align-items: center;
-}
-
-.comment_count {
-    display: flex;
-    flex-direction: row;
-    margin-right: 5px;
-}
-
-.liked_users_count {
-    display: flex;
-    flex-direction: row;
-    margin-right: 5px;
-}
-
-.liked_users_count img {
-    margin-top: 3px;
-}
-
-.feed_card_liked img{
-    margin-right: 5px;
-}

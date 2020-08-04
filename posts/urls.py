@@ -5,7 +5,6 @@ from . import views
 app_name='posts'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('<int:post_id>/', views.like_button, name='like_button'),
     path('<int:post_id>/', views.detail, name='detail'),
     path('new/', views.new, name='new'),
     path('create/', views.create, name='create'),
@@ -22,5 +21,7 @@ urlpatterns = [
     path('<int:comment_id>/tagforcomment/', views.tagforcomment, name='tagforcomment'),
     path('<int:post_id>/like', views.like, name='like'),
     path('<int:user_id>/profile_page/', views.profile_page, name='profile_page'),
+    path('<int:user_id>/profile_page2/', views.profile_page2, name='profile_page2'),
     path('<int:post_id>/post_to_user/', views.post_to_user, name='post_to_user'),
+    path('<int:tag_id>/interest_tags/', views.interest_tags, name='interest_tags'),
 ]

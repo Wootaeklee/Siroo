@@ -25,11 +25,15 @@
                     글쓰기
                 </div> 
             </div>
+        </div>
+        <div class="container">
             <div class="search_bar">
                 <div class="input_box">                    
                     <input type="text" name="search_tag" placeholder="우리 동네 궁금한 이야기를 검색하세요!">
                     <div class="button">
-                    <img src="{% static 'images/searchbutton.svg'%}" style = "width: 24px; height: 24px";>
+                        <a href="">
+                            <img src="{% static 'images/searchbutton.svg'%}" style = "width: 24px; height: 24px";>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -88,18 +92,32 @@
                 </div>
             </div>
             <div class="feed_card_info">
+                <div class="feed_card_avatar">
+                </div>
                 <div class="feed_card_author">
-                    {{ post.user.nickname }}
+                    <a href="{% url 'posts:post_to_user' post.id %}">
+                        {{ post.user.nickname }}
+                    </a>  
                 </div> 
                 <div class="feed_card_liked">
-                    댓글 : {{ post.comment_set.all.count }}
-                    좋아요 : {{ post.liked_users.count }}
+                    <div class="comment_count">
+                    <img src="{% static '/images/comment_count.svg'%}" style: width="16px"; height="16px";>{{ post.comment_set.all.count }}
+                    </div>
+                    <div class="liked_users_count">
+                        {% if post.liked_users.count == 0 %}
+                        <img src="{% static '/images/empty_like.svg'%}" style: width="14px"; height="13px";>{{ post.liked_users.count }}
+                        {% else %}
+                        <img src="{% static '/images/filled_like.svg'%}" style: width="14px"; height="13px";>{{ post.liked_users.count }}
+                        {% endif %}                       
+                    </div>                   
                 </div>
             </div>
         </div>         
         {% endfor %}
         {% endif %}
     </div>
+</div>
+</div>
 </div>
 
 {% endblock %}

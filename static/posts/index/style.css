@@ -1,5 +1,14 @@
 /* 배너 */
 
+
+body {
+    background-color: #F6F6F6;
+}
+
+.min-height {
+    min-height: 773px;
+}
+
 .index_banners {
     height: 250px;
     display: flex;
@@ -13,7 +22,7 @@
 .write_comment {
     margin-top: 27px;
     margin-left : 37px;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -39,12 +48,17 @@
     align-items: center;
     padding: 6px 16px;
 }
+/* 
+.newpost a{
+    box-sizing: border-box;
+    padding-top:2px;
+} */
 
 
 /* 토픽 */
 
 .index_topics {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -60,9 +74,11 @@
     height: 31px;
 }
 
-.select_vil_more {
+.select_vil_more a{
     height: 31px;
+    color: #959191;
 }
+    
 
 .topics_tags {
     margin-top: 15px;
@@ -75,22 +91,23 @@
 }
 
 .topics_tag {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans';
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     color: #fff;
     padding: 6px 8px 6px 8px;
     height: 30px;
-    background: #50BB1D;
+    background: #AE7D67;
     border-radius: 15px;
     box-sizing: border-box;
     margin-right: 4px;
     margin-bottom: 4px;
 }
 
+
 .topics_tag a{
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans';
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -99,15 +116,22 @@
 
 
 .topics_tag span {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans' ;
     font-style: normal;
     font-weight: normal;
     font-size: 10px;
-    color: #fff;
 }
 
+.topics_tag:hover, span:hover {
+    background: #F8E1D7;
+    color: #503326;
+}
+
+
+
+
 .index_feeds {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -132,7 +156,7 @@
 .feed_card {
     width: 218px;
     height: 161px;
-    border: 1px solid #E0E0E0;
+    background: #FFFFFF;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px; 
     padding: 13px 17px 5px 17px;
@@ -146,7 +170,7 @@
 .feed_card_body {
     min-height: 68px;
     margin-bottom: 16px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans' ;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -180,29 +204,30 @@
 }
 
 .tag {    
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans';
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
-    color: #FFFFFF;
+    color: #AE7D67;
     max-width: 130px;
     height: 24px;
     max-width: 120px;
-    padding: 4px 8px 4px 8px;
-    background: #50BB1D;
+    padding: 2px 8px 4px 8px;
+    border: 1px solid #AE7D67;
     border-radius: 15px;
     box-sizing: border-box;
     margin: 1px 1px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;    
+    text-overflow: ellipsis;
+    text-align: center;    
 }
 
 .feed_card_created_at {
     width: 70px;
     box-sizing: border-box;
     height: 52px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans', ;
     font-style: normal;
     font-weight: normal;
     font-size: 10px;
@@ -218,9 +243,8 @@
     height: 39px;
     width: 216px;
     padding: 0;
-    border-left: 1px solid #E0E0E0;
-    border-right: 1px solid #E0E0E0;
-    border-bottom: 1px solid #E0E0E0;
+    background: #FFFFFF;
+    border-top: 1px solid #E0E0E0;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     margin : 0 11px 0 11px;   
@@ -229,12 +253,18 @@
     justify-content: space-between;
     align-items: center;
 }
-
+.feed_card_avatar {
+    margin-left: 9px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #C4C4C4;;
+}
 .feed_card_author {
     box-sizing: border-box;
     padding: 10px 10px;
     height: 39px;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -250,7 +280,7 @@
     box-sizing: border-box;
     padding: 10px 5px;
     height: 39px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'DM Sans';
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
@@ -271,7 +301,7 @@
 }
 
 .liked_users_count img {
-    margin-top: 1px;
+    margin-top: 3px;
 }
 
 .feed_card_liked img{
