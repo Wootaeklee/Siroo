@@ -15,30 +15,31 @@ def sign_up_start(request):
 
 def sign_up(request):
     context = {}
-    
+
     #POST Method
     if request.method == 'POST':
         if (request.POST['email'] and
                 request.POST['password'] and
                 request.POST['password'] == request.POST['password_check']):
 
-            new_user = User.objects.create_user(
+            if User.objects.filter(nickname=request.POST['nickname']):
+                context['error'] = '닉네임을 사용할 수 없습니다'
+                
+            else:                
+                new_user = User.objects.create_user(
                 email=request.POST['email'],
                 name=request.POST['name'],
                 nickname=request.POST['nickname'],
                 gender=request.POST['gender'],
                 password=request.POST['password'],
-            )
+                )
+                auth.login(request, new_user)
 
-            auth.login(request, new_user)
-            # profile = User_profile(user=request.user)
-            # profile.save()
-            # user= new_user
-            # user_id=new_user.id
-            return redirect('accounts:sign_up_profile')
+                return redirect('accounts:sign_up_profile')
     
         else:
             context['error'] = 'Password를 확인해주세요'
+            
     #GET Method    
     return render(request, 'accounts/sign_up.html', context)
 
@@ -112,7 +113,7 @@ def update_profile(request, user_id):
     user = request.user
     profiles = User_profile.objects.get(user_id=user.id)
   
-
+    
     #POST Method
     if request.method == 'POST':
         if (request.POST['introduce'] and

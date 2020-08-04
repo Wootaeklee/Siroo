@@ -26,7 +26,7 @@
                 <form method="POST" action="{% url 'accounts:sign_up' %}">
                 {% csrf_token %}
                 <div class="input_box">
-                    <input type="email" id="email" name="email" placeholder="이메일">
+                    <input type="email" id="email" name="email" placeholder="이메일">                    
                     <input type="password" id="password" name="password" placeholder="비밀번호">
                     <input type="password" id="password_check" name="password_check" placeholder="비밀번호 확인">
                     <input type="text" id="name" name="name" placeholder="이름 ">
@@ -44,6 +44,7 @@
                 <div class="button">
                     <div class="login_submit">
                         <button type ="submit">계정생성완료</button>
+
                     </div>
                     <p>이전으로</p>                       
                 </div>
@@ -52,4 +53,6 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
+

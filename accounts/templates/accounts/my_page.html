@@ -186,6 +186,14 @@
                     좋아요 : {{ my_post.liked_users.count }}
                 </div>
             </div>
+            <div class="followers">
+                {% if trigger == 0 %}
+                    <a href="">팔로우</a> 
+                {% elif trigger == 1 %}
+                    <a href="">팔로우중입니다</a> 
+                {% else %}    
+                {% endif%} 
+            </div>
         </div>         
         {% endfor %}
         {% endif %}
