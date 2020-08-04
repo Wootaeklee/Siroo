@@ -43,7 +43,7 @@ def index(request):
     
     return render(request, 'posts/index.html', context)
     
-#jquery를 쓸 수 있어야 예쁘게 동작할 수 있음.    
+# jquery를 쓸 수 있어야 예쁘게 동작할 수 있음.    
 # def like_button(request, post_id):
 
 #     post = Post.objects.get(id=post_id)
