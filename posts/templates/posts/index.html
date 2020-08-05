@@ -19,10 +19,10 @@
     </div>
     <div class="index_topics">
         <div class="select_vil">
-            <a href="">{% if user_profile.main_village %}{{ user_profile.main_village }}{% else %}청라1동{% endif %}</a> 인기 토픽
+            <a href="">{% if user_profile.main_village %}{{ user_profile.main_village }}{% else %}시루의{% endif %}</a> 인기 토픽
         </div>
         <div class="select_vil_more">
-            <a href="">더보기</a>
+            <a href="{% url 'posts:tag_filter' default_tag.id %}">더보기</a>
         </div>
     </div>
     <div class="topics_tags">
@@ -38,7 +38,7 @@
     </div>
     <div class="index_feeds">
         <div class="select_vil">
-            <a href="">{% if user_profile.main_village %}{{ user_profile.main_village }}{% else %}청라1동{% endif %}</a> {% if user.nickname %}{{ user.nickname }}님 {% else %}시루의{% endif %} 주변 이야기
+            <a href="">{% if user_profile.main_village %}{{ user_profile.main_village }}{% else %}{% endif %}</a> {% if user.nickname %}{{ user.nickname }}님 {% else %}시루의{% endif %} 주변 이야기
         </div>
         <div class="select_vil_more">
             <a href="">더보기</a>
@@ -84,11 +84,22 @@
                     <img src="{% static '/images/comment_count.svg'%}" style: width="16px"; height="16px";>{{ post.comment_set.all.count }}
                     </div>
                     <div class="liked_users_count">
-                        {% if post.liked_users.count == 0 %}
+                    {% if post.liked_users.count == 0 %}
+                        <form action="{% url 'posts:like_button' post.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="image" src="{% static '/images/empty_like.svg'%}" style: width="14px"; height="13px";>{{ post.liked_users.count }}
+                        </form>
+                    {% else %}
+                        <form action="{% url 'posts:like_button' post.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="image" src="{% static '/images/filled_like.svg'%}" style: width="14px"; height="13px";>{{ post.liked_users.count }}
+                        </form>
+                    {% endif %}
+                        {% comment %} {% if post.liked_users.count == 0 %}
                         <img src="{% static '/images/empty_like.svg'%}" style: width="14px"; height="13px";>{{ post.liked_users.count }}
                         {% else %}
                         <img src="{% static '/images/filled_like.svg'%}" style: width="14px"; height="13px";>{{ post.liked_users.count }}
-                        {% endif %}                       
+                        {% endif %}                        {% endcomment %}
                     </div>                   
                 </div>
             </div>

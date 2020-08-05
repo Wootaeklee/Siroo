@@ -87,7 +87,9 @@
                             {{ my_comment.daycount }}
                         </div>
                         <div class="commented_post">
+                        <a href="{% url 'posts:detail' my_comment.post.id %}">
                             <button>원문보기</button>
+                        </a>
                         </div>
                         </div>
                     </div>

@@ -12,48 +12,77 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
 
-    posts = Post.objects.all().order_by('-created_at')
+    allposts = Post.objects.all().order_by('-created_at')
+    print(allposts)
+    posts = list()
+
+    for post in allposts:
+        print(int((timezone.now()-post.created_at).total_seconds()/60/3600))
+        if int((timezone.now()-post.created_at).total_seconds()/60/3600) < 8:
+            posts.append(post)
+        else:
+            pass   
+    print(posts)
     user_profile = ''
     
     #전체 태그에서 가장 많이 쓰인 태그 불러오기    
     # taged_post가 없는 경우 태그 목록에 노출 되지 않도록.
     tags=Tag.objects.exclude(taged_post__isnull=True).annotate(num_posts=Count('taged_post')).order_by('-num_posts')
-    tags=list(tags)
-
-   
+    tags=list(tags)  
 
     
     if request.user.is_authenticated:
-        user = request.user
-        user_profile = User_profile.objects.get(user=request.user)
-        user_vil = user_profile.main_village
-        # # vil_id=Vil.objects.get(vil=user_vil)
-        # posts = Post.objects.filter(post_vil=vil_id).order_by('-created_at')
+        user = request.user        
+        try :
+            user_profile = User_profile.objects.get(user=request.user)
+            user_vil = user_profile.main_village
+            vil_id=Vil.objects.get(vil=user_vil)
+            allposts = Post.objects.filter(post_vil=vil_id).order_by('-created_at')
+            posts = list()
+            for post in allposts:
+                print(int((timezone.now()-post.created_at).total_seconds()/60/3600))
+                if int((timezone.now()-post.created_at).total_seconds()/60/3600) < 8:
+                    posts.append(post)
+                else:
+                    pass   
+            tags = list()
+            for post in posts:
+                tag = Tag.objects.get(taged_post=post)
+                tags.append(tag)
+
+            print(tags)
+        except User_profile.DoesNotExist:
+            pass
+
     else:
         pass
     
 
     hot_tags = tags[0:9]
+    default_tag = hot_tags[0]
+    default_post = posts[0]
 
     context = {        
         'posts' : posts,
         'hot_tags' : hot_tags,
         'user_profile' : user_profile,
+        'default_tag' : default_tag,
+        'default_post' : default_post
     }
     
     return render(request, 'posts/index.html', context)
     
-# jquery를 쓸 수 있어야 예쁘게 동작할 수 있음.    
-# def like_button(request, post_id):
+    # jquery를 쓸 수 있어야 예쁘게 동작할 수 있음.    
+def like_button(request, post_id):
 
-#     post = Post.objects.get(id=post_id)
+    post = Post.objects.get(id=post_id)
 
-#     if request.user in post.liked_users.all():
-#         post.liked_users.remove(request.user)
-#     else:
-#         post.liked_users.add(request.user)
+    if request.user in post.liked_users.all():
+        post.liked_users.remove(request.user)
+    else:
+        post.liked_users.add(request.user)
 
-#     return render(request, 'posts/index.html')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     
 
 @login_required
@@ -213,8 +242,8 @@ def edit(request, post_id):
         return redirect('posts:index')  
 
     post = Post.objects.get(id=post_id)
-    user=request.user
-    user_profile=User_profile.objects.get(user=user)
+    user = request.user
+    user_profile = User_profile.objects.get(user=user)
     context = {
         'post' : post,
         'user_profile' : user_profile
@@ -330,7 +359,13 @@ def tag_filter(request, tag_id):
 
     tag = Tag.objects.get(id=tag_id)
 
-    return redirect('posts:filter_page', tag_id=tag.id)
+    return redirect('posts:filter_page_tag', tag_id=tag.id)
+
+# def post_filter(request, post_id):
+
+#     post = Post.objects.get(id=post_id)
+
+#     return redirect('posts:filter_page_post', post_id=post.id)
 
 @login_required
 def tagforcomment(request, comment_id):
@@ -409,7 +444,7 @@ def like(request, post_id):
     return redirect('posts:index')
 
 @login_required
-def filter_page(request, tag_id):
+def filter_page_tag(request, tag_id):
     
     tag = Tag.objects.get(id=tag_id)
     posts = tag.taged_post.all().order_by('-created_at')
@@ -426,13 +461,46 @@ def filter_page(request, tag_id):
         'hot_tags' : hot_tags,
     }
 
-    return render(request, 'posts/filter_page.html', context )
+    return render(request, 'posts/filter_page_tag.html', context )
 
-# def search_post(request, post_id):
+@login_required
+def filter_page_post(request):
+    
+
+    tag = Tag.objects.get(id=tag_id)
+    posts = tag.taged_post.all().order_by('-created_at')
+    
 
 
+    #전체 태그에서 가장 많이 쓰인 태그 불러오기    
+    # taged_post가 없는 경우 태그 목록에 노출 되지 않도록.
+    tags=Tag.objects.exclude(taged_post__isnull=True).annotate(num_posts=Count('taged_post')).order_by('-num_posts')
+    tags=list(tags)
 
-#성민/my_page의 기초 backbone
+    hot_tags = tags[0:9]
+
+    context = {        
+        'posts' : posts,
+        'hot_tags' : hot_tags,
+    }
+
+    return render(request, 'posts/filter_page_post.html', context )
+
+def search(request):
+
+    search = request.POST['search_post']
+    if search.count('#') > 0:
+        search_tag = search
+    else:
+        search_post = search
+
+    context = {
+        'post' : post
+    }
+
+    return render(request, 'posts/filter_page_post.html', context)
+
+# 성민/my_page의 기초 backbone
 
 def profile_page(request, user_id):
 
@@ -525,7 +593,7 @@ def profile_page2(request, user_id):
     user_main_vil = user_profile.main_village
     user_second_vil = user_profile.second_village
     user_third_vil = user_profile.third_village
-    my_tags = list(user_profile.interest_tags.all().order_by('-created_at'))
+    my_tags = list(user_profile.interest_tags.all())
     my_tags_count = len(my_tags)
 
     if user_profile.introduce is None:

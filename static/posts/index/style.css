@@ -300,7 +300,7 @@ body {
     margin-right: 5px;
 }
 
-.liked_users_count img {
+.liked_users_count input {
     margin-top: 3px;
 }
 

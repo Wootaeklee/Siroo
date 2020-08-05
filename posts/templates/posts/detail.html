@@ -49,7 +49,9 @@
                     </div>
                     <div class="nickname_uservil">  
                         <div class="nickname">
+                        <a href="{% url 'posts:profile_page' post.user.id %}">
                             {{ post.user.nickname }}
+                        </a>
                         </div>
                         <div class="uservil">
                             <div>{{ user_profile.main_village }}</div>
@@ -112,7 +114,9 @@
                         <div class="comment_info_body">                 
                         <div class="comment_nickname_uservil">  
                             <div class="nickname">
+                            <a href="{% url 'posts:profile_page' comment.user.id %}">
                                 {{ comment.user.nickname }}
+                                </a>
                             </div>
                             <div class="uservil">
                                 청라 1동

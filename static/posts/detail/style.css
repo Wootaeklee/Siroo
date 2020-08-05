@@ -291,6 +291,8 @@ textarea:focus {
     align-items: baseline;
 }
 
+
+
 .comment_info_body a {
     padding-top: 3px;
     font-family: 'Noto Sans KR';
@@ -304,6 +306,11 @@ textarea:focus {
 .comment_info_body .nickname {
     margin-bottom: 4px;
     align-self: center;
+}
+
+.comment_info_body .nickname a {
+    margin-left: 0px
+    
 }
 
 .comment_info_body .uservil {
