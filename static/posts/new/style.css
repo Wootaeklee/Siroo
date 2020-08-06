@@ -29,9 +29,9 @@
   }
   
   /* When moving the mouse over the close button */
-  .closebtn:hover {
+.closebtn:hover {
     color: black;
-  }
+}
 
 body {
     background-color: #F3F3F3;

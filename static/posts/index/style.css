@@ -9,7 +9,11 @@ body {
     min-height: 773px;
 }
 
+.banners_topics {
+    display: flex;
+}
 .index_banners {
+    width:710px;
     height: 250px;
     display: flex;
     align-items: flex-start;
@@ -57,21 +61,21 @@ body {
 
 /* 토픽 */
 
-.index_topics {
-    font-family: 'Noto Sans KR';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    margin-top: 24px;
-    height: 31px;
+.select_vil {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 11px 0 11px;
+    height: 31px;
 }
 
-.select_vil {
-    height: 31px;
+.select_vil .a{
+    color: #AE7D67;
+}
+
+.select_vil .a a{
+    color: #AE7D67;
+}
+
+.select_vil div{
+    margin-right: 6px;
 }
 
 .select_vil_more a{
@@ -79,55 +83,70 @@ body {
     color: #959191;
 }
     
-
+.topics {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width:218px;
+    height: 250px;
+    background-color: #fff;
+    margin-top: 17px;
+    border-radius: 8px;
+    padding-top: 24px;
+    padding-left: 22px;
+    padding-right: 22px;
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #503326;
+}
 .topics_tags {
-    margin-top: 15px;
+    margin-top: 41px;
     height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    padding: 0 11px 0 11px;
     flex-wrap: wrap;
 }
 
 .topics_tag {
-    font-family: 'DM Sans';
+    display:flex;
+    justify-content: space-between;
+    font-family: 'Noto Sans KR';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 500;
     font-size: 14px;
-    color: #fff;
-    padding: 6px 8px 6px 8px;
+    color: #000000;
+    padding: 6px 0px 6px 0px;
     height: 30px;
-    background: #AE7D67;
-    border-radius: 15px;
     box-sizing: border-box;
-    margin-right: 4px;
-    margin-bottom: 4px;
 }
 
 
 .topics_tag a{
-    font-family: 'DM Sans';
+    font-family: 'Noto Sans KR';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 500;
     font-size: 14px;
-    color: #fff;
+    color: #000000;
 }
 
 
 .topics_tag span {
-    font-family: 'DM Sans' ;
+    padding-top: 2px;
+    font-family: 'Noto Sans KR';
     font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
+    font-weight: 500;
+    font-size: 8px;    
+    text-align: right;
+    color: #AE7D67;
 }
 
 .topics_tag:hover, span:hover {
     background: #F8E1D7;
     color: #503326;
 }
-
-
 
 
 .index_feeds {
@@ -139,7 +158,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 64px 11px 0 11px;
+    padding: 40px 11px 0 11px;
 }
     
 

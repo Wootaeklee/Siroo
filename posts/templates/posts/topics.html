@@ -2,61 +2,28 @@
 
 {% load static %}
 {% block style %}
-<link rel="stylesheet" href="{% static 'posts/index/style.css' %}">
+<link rel="stylesheet" href="{% static 'posts/topics/style.css' %}">
 {% endblock %}
 {% block content %}
-<div class="container">
-    <!-- 최소 높이 설정을 통한 footer바 고정 -->
-    <div class="min-height">
-    <div class="banners_topics">
-        <div class="index_banners">
-            <div class="write_comment">
-                지금, 내 주변에서 무슨 일이<br> 
-                일어나고 있을까요?
-                <p>내 이야기를 공유하고 싶다면,</p>
+      <div class="top_menu">
+        <div class="container">
+          <div class="selected_topic">
+            <text>내 토픽</text>
+            <div class="tags">
+                <div><a href="">a</a></div>
             </div>
-            <div class="newpost">
-                <a href="{% url 'posts:new' %}"><img src="{% static '/images/newpost.svg'%}"></a>
-            </div>
-        </div>
-        <div class="topics">
-            실시간 인기토픽
-            <div class="topics_tags">
-                {% if hot_tags %}
-                    {% for hot_tag in hot_tags%}
-                        <a href="{% url 'posts:tag_filter' hot_tag.id %}">
-                        <div class="topics_tag">                    
-                            #{{ hot_tag }} <span>{{ hot_tag.taged_post.all.count }}개</span>
-                        </div>
-                        </a>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div>
-    </div>
-    <div class="index_feeds">
-        <div class="select_vil">
-            <div class="select_vil a">
-            <a href="">
-                {% if user_profile.main_village %}
-                {{ user_profile.main_village }}</a>, 
-            <a href="">
-                {% if user_profile.second_village %}
-                {{ user_profile.second_village }}</a>, 
-            <a href="">
-                {% if user_profile.third_village %}
-                {{ user_profile.third_village }}</a>
-                {% endif %}
-                {% endif %}
-                {% endif %}
-            </div>
-            <div>주변 이야기</div>
-        </div>
-        <div class="select_vil_more">
-            <a href="">더보기</a>
-        </div>
-    </div>
-    <div class="index_feed">
+            <text><a href="">더보기</a></text>
+          </div>
+          <div class="search_topic">
+            <text>관심 토픽 외 검색</text>
+          </div>
+        </div>     
+      </div>
+      <div class="background">
+        <div class="min_height">
+      <!-- 카드형태의 피드 -->
+      <div class="container">
+      <div class="index_feed">
         {% if posts %}
         {% for post in posts %}
         <div class="wrap_feed">
@@ -118,7 +85,8 @@
         </div>         
         {% endfor %}
         {% endif %}
-    </div>
-</div>
+      </div>
+    </div>  
+  </div>
 </div>
 {% endblock %}

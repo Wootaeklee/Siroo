@@ -5,6 +5,7 @@ from . import views
 app_name='posts'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('<int:user_id>/topics', views.topics, name='topics'),
     path('<int:post_id>/like_button', views.like_button, name='like_button'),
     path('<int:post_id>/', views.detail, name='detail'),
     path('new/', views.new, name='new'),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('<int:user_id>/profile_page2/', views.profile_page2, name='profile_page2'),
     path('<int:post_id>/post_to_user/', views.post_to_user, name='post_to_user'),
     path('<int:tag_id>/interest_tags/', views.interest_tags, name='interest_tags'),
+    
 ]

@@ -13,16 +13,13 @@ from django.contrib.auth.decorators import login_required
 def index(request):
 
     allposts = Post.objects.all().order_by('-created_at')
-    print(allposts)
     posts = list()
 
     for post in allposts:
-        print(int((timezone.now()-post.created_at).total_seconds()/60/3600))
         if int((timezone.now()-post.created_at).total_seconds()/60/3600) < 8:
             posts.append(post)
         else:
             pass   
-    print(posts)
     user_profile = ''
     
     #전체 태그에서 가장 많이 쓰인 태그 불러오기    
@@ -55,18 +52,15 @@ def index(request):
             pass
 
     else:
-        pass
-    
+        pass    
 
-    hot_tags = tags[0:9]
-    default_tag = hot_tags[0]
+    hot_tags = tags[0:4]
     default_post = posts[0]
 
     context = {        
         'posts' : posts,
         'hot_tags' : hot_tags,
         'user_profile' : user_profile,
-        'default_tag' : default_tag,
         'default_post' : default_post
     }
     
@@ -83,7 +77,6 @@ def like_button(request, post_id):
         post.liked_users.add(request.user)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    
 
 @login_required
 def detail(request, post_id):
@@ -133,6 +126,46 @@ def detail(request, post_id):
         'user_profile' : user_profile
     }
     return render(request, 'posts/detail.html', context)
+
+def topics(request, user_id):
+
+    tags=list() 
+
+    
+    if request.user.is_authenticated:
+        user = request.user        
+        try :
+            user_profile = User_profile.objects.get(user=request.user)
+            user_vil = user_profile.main_village
+            vil_id=Vil.objects.get(vil=user_vil)
+            allposts = Post.objects.filter(post_vil=vil_id).order_by('-created_at')
+            posts = list()
+            for post in allposts:
+                print(int((timezone.now()-post.created_at).total_seconds()/60/3600))
+                if int((timezone.now()-post.created_at).total_seconds()/60/3600) < 8:
+                    posts.append(post)
+                else:
+                    pass   
+            tags = list()
+            for post in posts:
+                tag = Tag.objects.get(taged_post=post)
+                tags.append(tag)
+
+            print(tags)
+        except User_profile.DoesNotExist:
+            pass
+
+    else:
+
+        pass  
+      
+    context = {        
+        'posts' : posts,
+        'user_profile' : user_profile,
+    }
+    
+    return render(request, 'posts/topics.html', context)
+
 
 @login_required
 def new(request):

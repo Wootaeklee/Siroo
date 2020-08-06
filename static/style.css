@@ -2,19 +2,15 @@ a{
     text-decoration: none;
 }
 
-
 /* 레이아웃 */
 
 footer {
     padding: 0; 
     height: 60px;
     position: relative;    
-    /* 푸터라인 확인 시 주석 제거 */
-    /* border-top: 1px solid #E0E0E0;*/
 }
 
 /* flexbox */
-
 
 .container {
     margin: 0 auto;
@@ -63,13 +59,17 @@ footer {
 }
 
 .header_menu {
-    width: 355px;
+    width: 380px;
     height: 60px;
     display: flex;
     justify-content: space-between;
     align-self: flex-end;
     align-items: center;
     flex-wrap: wrap;  
+}
+
+.header_menu span {
+    padding-right:20px;
 }
 
 .navbutton {

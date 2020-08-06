@@ -25,10 +25,11 @@
                         </div>
                         <div class="menu_wrap">
                             <div class="header_menu">
-                                <div><a href="{% url 'posts:index' %}">우리 동네 이야기</a></div>
-                                <div><a href="">우리 동네 마켓</a></div>
+                                <div><a href-"">인기 토픽</a></div>
+                                <div><a href="{% url 'posts:topics' request.user.id %}">우리 동네</a></div>
+                                <div><a href="">동네 마켓</a></div>
                                 <div><a href="">ABOUT</a></div>
-                                <div> ｜ </div>
+                                <span> | </span>
                             </div>         
                             {% if user.is_authenticated %}
                             <div class="navbutton">
